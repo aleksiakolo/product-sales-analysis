@@ -1,7 +1,17 @@
-library/
-local/
-cellar/
-lock/
-python/
-sandbox/
-staging/
+# R session files
+.Rhistory
+.RData
+.Ruserdata
+
+# RStudio / IDE
+.Rproj.user/
+
+# renv
+renv/library/
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log
