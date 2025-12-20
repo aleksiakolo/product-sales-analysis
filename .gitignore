@@ -1,6 +1,33 @@
-.Rhistory
-.RData
-.Rproj.user/
-renv/library/
-*.html
+# OS 
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
 
+# editor
+.vscode/
+
+# data (keep local only)
+data/
+raw/
+processed/
+
+# data files
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.json
+
+# outputs / results
+outputs/
+results/
+figures/
+plots/
+
+# logs / temp files
+*.log
+*.tmp
+
+# git safety
+.git/
