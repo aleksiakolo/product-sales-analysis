@@ -26,6 +26,7 @@ figures/
 plots/
 
 # logs / temp files
+.ipynb_checkpoints/
 *.log
 *.tmp
 
