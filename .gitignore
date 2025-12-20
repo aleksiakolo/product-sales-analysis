@@ -31,3 +31,6 @@ plots/
 
 # git safety
 .git/
+
+# renv
+renv/library/
