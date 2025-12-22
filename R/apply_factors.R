@@ -7,7 +7,7 @@ apply_factors <- function(tables) {
         mutate(
             ship_mode      = factor(ship_mode, levels = c("First Class", "Standard Class", "Second Class", "Same Day")),
             segment        = factor(segment),
-            order_priority = factor(order_priority,levels = c("Low", "Medium", "High", "Critical"), mordered = TRUE),
+            order_priority = factor(order_priority,levels = c("Low", "Medium", "High", "Critical"), ordered = TRUE),
             category       = factor(category),
             sub_category   = factor(sub_category),
             market         = factor(market, levels = market_levels),
@@ -18,7 +18,7 @@ apply_factors <- function(tables) {
 
     tables$Returns <- tables$Returns %>%
         mutate(
-            returned = as_integer(returned == "TRUE"),
+            returned = as.integer(returned == "TRUE"),
             market   = factor(market, levels = market_levels)
         )
 
@@ -34,9 +34,9 @@ apply_factors <- function(tables) {
 # source("R/apply_factors.R")
 
 # tables <- list(
-#   Orders   = readr::read_csv("data/raw_cleaned/Orders.csv"),
-#   Returns  = readr::read_csv("data/raw_cleaned/Returns.csv"),
-#   People   = readr::read_csv("data/raw_cleaned/People.csv")
+#   Orders   = readr::read_csv("data/processed/Orders.csv"),
+#   Returns  = readr::read_csv("data/processed/Returns.csv"),
+#   People   = readr::read_csv("data/processed/People.csv")
 # )
 
 # tables <- apply_factors(tables)
