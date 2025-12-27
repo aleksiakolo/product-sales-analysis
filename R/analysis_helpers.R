@@ -41,6 +41,7 @@ filter_by_categories <- function(df, filters = list()){
     for (col in names(filters)) {
         df <- df %>% filter(.data[[col]]) %in% filters[[col]]
     }
+    df
 }
 
 #' Compute summary statistics for a single numeric column
@@ -55,7 +56,7 @@ filter_by_categories <- function(df, filters = list()){
 #'
 #' @examples
 #' numeric_summary_single(orders, "sales")
-nummeric_summary_single <- function(df, numeric_col) {
+numeric_summary_single <- function(df, numeric_col) {
     df %>%
         summarise(
             mean   = mean(.data[[numeric_col]], na.rm = TRUE),
@@ -78,8 +79,8 @@ nummeric_summary_single <- function(df, numeric_col) {
 #' @return A tibble with summary statistics for each numeric column.
 #' 
 #' @examples
-#' nummeric_summary_multiple(orders, c("sales", "profit"))
-nummeric_summary_multiple <- function(df, numeric_cols) {
+#' numeric_summary_multiple(orders, c("sales", "profit"))
+numeric_summary_multiple <- function(df, numeric_cols) {
     bind_rows(
         lapply(numeric_cols, function(col) {
             numeric_summary_single(df, col) %>%
@@ -133,7 +134,7 @@ plot_distribution_hist <- function(df, numeric_col, bins=30) {
 #' 
 #' @examples
 #' plot_distributiopn_density(orders, "sales")
-plot_distributiopn_density <- function(df, numeric_col) {
+plot_distribution_density <- function(df, numeric_col) {
     ggplot(df, aes(x = .data[[numeric_col]])) +
         geom_density(fill = "green", alpha = 0.5) +
         labs(x = numeric_col, y = "Density") +
