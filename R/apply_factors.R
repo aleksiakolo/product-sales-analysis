@@ -3,7 +3,7 @@ apply_factors <- function(tables) {
     market_levels <- sort(unique(tables$Orders$market))
     region_levels <- sort(unique(tables$Orders$region))
 
-    tables$Orders <- tables$Orders %>%
+    tables$Orders <- tables$Orders |>
         mutate(
             ship_mode      = factor(ship_mode, levels = c("First Class", "Standard Class", "Second Class", "Same Day")),
             segment        = factor(segment),
@@ -16,13 +16,13 @@ apply_factors <- function(tables) {
             state          = factor(state)
         )
 
-    tables$Returns <- tables$Returns %>%
+    tables$Returns <- tables$Returns |>
         mutate(
             returned = as.integer(returned == "TRUE"),
             market   = factor(market, levels = market_levels)
         )
 
-    tables$People <- tables$People %>%
+    tables$People <- tables$People |>
         mutate(
             region = factor(region, levels = region_levels)
         )

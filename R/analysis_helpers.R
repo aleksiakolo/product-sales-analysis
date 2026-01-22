@@ -39,7 +39,7 @@ join_tables <- function(df_left, df_right, by, type = "left") {
 #' )
 filter_by_categories <- function(df, filters = list()){
     for (col in names(filters)) {
-        df <- df %>% filter(.data[[col]]) %in% filters[[col]]
+        df <- df |> filter(.data[[col]]) %in% filters[[col]]
     }
     df
 }
@@ -57,7 +57,7 @@ filter_by_categories <- function(df, filters = list()){
 #' @examples
 #' numeric_summary_single(orders, "sales")
 numeric_summary_single <- function(df, numeric_col) {
-    df %>%
+    df |>
         summarise(
             mean   = mean(.data[[numeric_col]], na.rm = TRUE),
             median = median(.data[[numeric_col]], na.rm = TRUE),
@@ -83,10 +83,10 @@ numeric_summary_single <- function(df, numeric_col) {
 numeric_summary_multiple <- function(df, numeric_cols) {
     bind_rows(
         lapply(numeric_cols, function(col) {
-            numeric_summary_single(df, col) %>%
+            numeric_summary_single(df, col) |>
                 mutate(variable = col)
         })
-    ) %>%
+    ) |>
         relocate(variable)
 }
 

@@ -15,5 +15,13 @@
   "vcs.ignore.cellar": true,
   "vcs.ignore.library": true,
   "vcs.ignore.local": true,
-  "vcs.manage.ignores": true
+  "vcs.manage.ignores": true,
+  "r.lsp.diagnostics": false,
+  "r.lsp.use_stdio": false,
+  "r.lintr.enabled": false,
+  "jupyter.linting.enabled": false,
+  "[jupyter]": {
+    "editor.quickSuggestions": false,
+    "editor.hover.enabled": false
+  }
 }

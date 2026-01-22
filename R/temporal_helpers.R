@@ -15,7 +15,7 @@ library(lubridate)
 #' @examples
 #' add_time_period(orders, "order_date", period = "month")
 add_time_period <- function(df, date_col, period = "month") {
-    df %>%
+    df |>
         mutate(
             period = dplyr::case_when(
                 period == "month" ~ floor_date(.data[[date_col]], unit = "month"),
@@ -35,8 +35,8 @@ add_time_period <- function(df, date_col, period = "month") {
 #' @examples
 #' summarize_over_time(orders_with_period, "sales")
 summarize_over_time <- function(df, numeric_col) {
-    df %>%
-        group_by(period) %>%
+    df |>
+        group_by(period) |>
         summarise(
             mean = mean(.data[[numeric_col]], na.rm = TRUE),
             median = median(.data[[numeric_col]], na.rm = TRUE),
@@ -61,10 +61,10 @@ summarize_over_time <- function(df, numeric_col) {
 #' filter_by_date_range(orders, "order_date", "2020-01-01", "2020-12-31")
 filter_by_date_range <- function(df, date_col, start_date = NULL, end_date = NULL) {
     if (!is.null(start_date)) {
-        df <- df %>% filter(.data[[date_col]] >= as.Date(start_date))
+        df <- df |> filter(.data[[date_col]] >= as.Date(start_date))
     }
     if (!is.null(end_date)) {
-        df <- df %>% filter(.data[[date_col]] <= as.Date(end_date))
+        df <- df |> filter(.data[[date_col]] <= as.Date(end_date))
     }
     df
 }
