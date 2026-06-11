@@ -18,7 +18,7 @@ apply_factors <- function(tables) {
 
     tables$Returns <- tables$Returns |>
         mutate(
-            returned = as.integer(returned == "TRUE"),
+            returned = as.integer(returned),
             market   = factor(market, levels = market_levels)
         )
 
@@ -29,14 +29,3 @@ apply_factors <- function(tables) {
 
     tables
 }
-
-
-# source("R/apply_factors.R")
-
-# tables <- list(
-#   Orders   = readr::read_csv("data/processed/Orders.csv"),
-#   Returns  = readr::read_csv("data/processed/Returns.csv"),
-#   People   = readr::read_csv("data/processed/People.csv")
-# )
-
-# tables <- apply_factors(tables)

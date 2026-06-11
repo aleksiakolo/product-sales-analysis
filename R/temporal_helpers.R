@@ -1,7 +1,5 @@
 library(dplyr)
 library(ggplot2)
-library(skimr)
-library(purrr)
 library(lubridate)
 
 #' Add a time period column to a data frame based on a date column

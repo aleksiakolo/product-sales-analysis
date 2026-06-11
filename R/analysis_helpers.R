@@ -1,7 +1,5 @@
 library(dplyr)
 library(ggplot2)
-library(skimr)
-library(purrr)
 
 #' Join two data frames with specified join type
 #'
@@ -39,7 +37,7 @@ join_tables <- function(df_left, df_right, by, type = "left") {
 #' )
 filter_by_categories <- function(df, filters = list()){
     for (col in names(filters)) {
-        df <- df |> filter(.data[[col]]) %in% filters[[col]]
+        df <- df |> filter(.data[[col]] %in% filters[[col]])
     }
     df
 }

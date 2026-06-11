@@ -131,12 +131,34 @@ This table maps managers or representatives to geographic regions.
 ---
 
 ## Results & Insights
-*(To be completed after exploratory analysis)*
 
-This section will summarize key findings related to:
-- Top-performing products
-- High-performing regions
-- Observed sales patterns and trends
+### Product Performance
+- Technology is the highest-revenue and most profitable category; Furniture generates comparable revenue but with significantly lower profit margins.
+- A Pareto-style concentration is present: a small share of orders account for the majority of total sales.
+- Discount level is the strongest order-level predictor of profit (coefficient −235.85, standardized −0.287), outweighing category, quantity, and priority. Higher discounts reliably erode profitability.
+- Larger orders reduce the probability of a loss: the log-sales logistic model shows a clear downward trend in loss probability as order size increases.
+
+### Geographic & Market Performance
+- Regional profit margins differ significantly (one-way ANOVA, p < 0.05), with Central and South regions underperforming relative to others.
+- Return probability is not independent of region (chi-square test significant), indicating geographically concentrated return risk.
+- Discount sensitivity varies by region: the interaction term `profit ~ discount * region` is significant, meaning the cost of discounting differs across markets.
+
+### Customer Segments
+- Segment margins are statistically different (ANOVA significant); the Consumer segment generates the highest volume, while Home Office tends to have higher per-order profitability.
+- Return probability differs significantly across segments (chi-square test), with Corporate orders showing a higher return rate.
+- The effect of discounting on profit also varies by segment (`profit ~ discount * segment` interaction significant).
+
+### Returns & Discounts
+- Returned orders have significantly lower mean profit than non-returned orders (Welch t-test, p < 0.05).
+- Higher discount levels are associated with higher return probability (logistic regression significant).
+- Return rates and profit both differ significantly across discount buckets (chi-square and ANOVA both significant), reinforcing that heavy discounting carries compounding risk.
+
+### Temporal Trends
+- No statistically significant structural shift in profitability after 2013 (regression p = 0.426).
+- No detectable long-run upward or downward sales trend at the order level (year coefficient p = 0.836).
+- Return risk shows a weak downward trend over time (logistic regression p ≈ 0.075), but this does not reach conventional significance.
+- Discount intensity has remained broadly stable over the observed period (p = 0.181).
+- Most performance variation is therefore driven by cross-sectional factors — product mix, region, segment, and discount policy — rather than time.
 
 ---
 
@@ -145,14 +167,31 @@ This section will summarize key findings related to:
 ```text
 product-sales-analysis/
 ├── data/
-│   ├── raw/
-│   └── processed/               
-├── notebooks/          
+│   ├── raw/                          # Original Excel source file
+│   └── processed/                    # Cleaned CSVs (Orders, Returns, People)
+├── notebooks/
+│   ├── dataset_analysis.ipynb        # Initial data loading and cleaning
+│   ├── orders_statistics.ipynb       # Descriptive statistics for Orders table
+│   ├── inferential_analysis_plan.md  # Plan mapping EDA observations to inference tests
+│   ├── analysis/                     # Numeric EDA notebooks (01–07 by topic)
+│   ├── visualization/                # Plot-focused notebooks (01–07 by topic)
+│   └── inferential_statistics/       # Inferential/modelling notebooks (01–07 by topic)
 ├── R/
+│   ├── analysis_helpers.R            # Shared join, filter, summary, and plot helpers
+│   ├── apply_factors.R               # Factor-level encoding for all three tables
+│   └── temporal_helpers.R            # Time period helpers and trend plots
 ├── renv/
-│   ├── activate.R                
-│   └── settings.json            
-├── renv.lock                     
-├── .Rprofile                     
-├── .gitignore                    
-└── README.md                     
+│   ├── activate.R
+│   └── settings.json
+├── renv.lock
+├── .Rprofile
+├── .gitignore
+└── README.md
+```
+---
+
+## Dashboards
+
+Interactive dashboards for this project are published on Tableau Public:
+
+https://public.tableau.com/shared/JYZ57XWWT?:display_count=n&:origin=viz_share_link
